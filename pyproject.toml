@@ -1,10 +1,18 @@
-[tool.poetry]
+[build-system]
+requires = ['setuptools', "setuptools-scm"]
+build-backend = 'setuptools.build_meta'
+
+
+[project]
 name = "markdown_to_json"
 version = "2.1.0"
 description = "Markdown to dict and json deserializer"
+authors = [
+    { name = "Nathan Vack", email = "njvack@wisc.edu" }
+]
+readme = "README.md"
 
-authors = ["Nathan Vack <njvack@wisc.edu>"]
-keywords = ["serializer", "deserializer", "markdown",]
+keywords = ["serializer", "deserializer", "markdown", ]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -18,20 +26,19 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
 ]
-include = [
-    "markdown_to_json/**/*.py",
-    "markdown_to_json/**/*.md",
-    "markdown_to_json/**/*.txt",
-    "markdown_to_json/**/*.html",
-    "markdown_to_json/**/*.jinja",
+license = { text = "MIT" }
+#repository = "https://github.com/njvack/markdown_to_json"
+#homepage = "https://github.com/njvack/markdown_to_json"
+#documentation = "https://github.com/njvack/markdown_to_json"
+
+[tool.setuptools.package-data]
+"markdown_to_json" = [
+    '**/*.py',
+    '**/*.md',
+    '**/*.txt',
+    '**/*.html',
+    '**/*.jinja',
 ]
-exclude = [
-]
-license = "MIT"
-readme = "README.md"
-repository = "https://github.com/njvack/markdown_to_json"
-homepage = "https://github.com/njvack/markdown_to_json"
-documentation ="https://github.com/njvack/markdown_to_json"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/njvack/markdown_to_json/issues"
@@ -40,20 +47,22 @@ documentation ="https://github.com/njvack/markdown_to_json"
 [tool.poetry.dependencies]
 python = ">=3.6.2"
 
-[tool.poetry.dev-dependencies]
-pytest-cov = "*"
-pytest = "*"
-vermin = "*"
-tox = "*"
-isort = "*"
-bandit = "*"
-black = "*"
-pylint = "*"
-ruff = "*"
-mypy = "*"
-pre-commit = "*"
+[project.optional-dependencies]
+dev = [
+    "pytest-cov",
+    "pytest",
+    "vermin",
+    "tox",
+    "isort",
+    "bandit",
+    "black",
+    "pylint",
+    "ruff",
+    "mypy",
+    "pre-commit",
+]
 
-[tool.poetry.scripts]
+[project.scripts]
 md_to_json = 'markdown_to_json.scripts.md_to_json:main'
 
 [tool.black]
@@ -79,9 +88,6 @@ exclude = '''
                      # the root of the project
 )
 '''
-[build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
