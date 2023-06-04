@@ -33,7 +33,7 @@ python -m markdown_to_json --help
 ```bash
 git clone https://github.com/njvack/markdown-to-json.git
 cd markdown_to_json
-./setup.py install
+pip install -e install
 ```
 
 The package has no external requirements and has been tested python 3.6+.
